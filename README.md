@@ -1,4 +1,4 @@
-Nancy.Markdown
+Nancy.ViewEngines.Markdown
 ==============
 
 This implements IViewEngine in order to render Markdown(*.md) files to the browser.  
