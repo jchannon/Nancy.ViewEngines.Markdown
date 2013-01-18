@@ -1,11 +1,12 @@
-using System;
-using Nancy.ViewEngines;
-using System.Collections.Generic;
-using Nancy.Responses;
-using System.IO;
-using MarkdownSharp;
 namespace Nancy.ViewEngines.Markdown
 {
+	using System;
+	using Nancy.ViewEngines;
+	using System.Collections.Generic;
+	using Nancy.Responses;
+	using System.IO;
+	using MarkdownSharp;
+
     public class MarkDownEngine : IViewEngine
     {
         private readonly IRootPathProvider rootPathProvider;
@@ -40,12 +41,9 @@ namespace Nancy.ViewEngines.Markdown
                 writer.Write(HTML);
                 writer.Flush();
             };
+
             return response;
         }
-
-
-
-
     }
 }
 
