@@ -9,7 +9,7 @@
     <ProjectGuid>{B6929D0B-5104-4C7E-979D-F4914E813FA6}</ProjectGuid>
     <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Nancy.Markdown.Demo</RootNamespace>
+    <RootNamespace>Nancy.ViewEngines.Markdown.Demo</RootNamespace>
     <AssemblyName>Nancy.Markdown.Demo</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -91,9 +91,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\Nancy.Markdown\Nancy.Markdown.csproj">
+    <ProjectReference Include="..\Nancy.Markdown\Nancy.ViewEngines.Markdown.csproj">
       <Project>{864AF449-0902-44FC-BEEE-06BA9A6F4A8F}</Project>
-      <Name>Nancy.Markdown</Name>
+      <Name>Nancy.ViewEngines.Markdown</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Nancy.Responses;
 using System.IO;
 using MarkdownSharp;
-namespace Nancy.Markdown
+namespace Nancy.ViewEngines.Markdown
 {
     public class MarkDownEngine : IViewEngine
     {

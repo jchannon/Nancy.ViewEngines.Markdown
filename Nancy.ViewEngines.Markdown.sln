@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Markdown.Demo", "src\Nancy.Markdown.Demo\Nancy.Markdown.Demo.csproj", "{B6929D0B-5104-4C7E-979D-F4914E813FA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.ViewEngines.Markdown.Demo", "src\Nancy.ViewEngines.Markdown.Demo\Nancy.ViewEngines.Markdown.Demo.csproj", "{B6929D0B-5104-4C7E-979D-F4914E813FA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Markdown", "src\Nancy.Markdown\Nancy.Markdown.csproj", "{864AF449-0902-44FC-BEEE-06BA9A6F4A8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.ViewEngines.Markdown", "src\Nancy.ViewEngines.Markdown\Nancy.ViewEngines.Markdown.csproj", "{864AF449-0902-44FC-BEEE-06BA9A6F4A8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{08C4430C-B785-4359-AD08-C0862079BD70}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,7 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\Nancy.Markdown.Demo\Nancy.Markdown.Demo.csproj
+		StartupItem = src\Nancy.ViewEngines.Markdown.Demo\Nancy.ViewEngines.Markdown.Demo.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
