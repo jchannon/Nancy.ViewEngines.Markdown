@@ -33,10 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.0.15.3\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="MarkdownSharp">
-      <HintPath>..\..\..\Downloads\markdownsharp-20100703-v113\MarkdownSharp\bin\Debug\MarkdownSharp.dll</HintPath>
+      <HintPath>..\..\packages\Nancy.0.15.3\lib\net40\Nancy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -48,4 +45,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\MarkdownSharp\MarkdownSharp.csproj">
+      <Project>{37619116-CCE8-465A-8B1F-081CA53364BB}</Project>
+      <Name>MarkdownSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
