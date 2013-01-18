@@ -30,7 +30,7 @@ namespace Nancy.ViewEngines.Markdown
 
             string HTML = renderContext.ViewCache.GetOrAdd(viewLocationResult, result =>
                                                                      {
-                                                                         string markDown = File.ReadAllText(rootPathProvider.GetRootPath() + viewLocationResult.Location + "\\" + viewLocationResult.Name + ".md");
+                                                                         string markDown = File.ReadAllText(rootPathProvider.GetRootPath() + viewLocationResult.Location + Path.DirectorySeparatorChar + viewLocationResult.Name + ".md");
                                                                          var parser = new MarkdownSharp.Markdown();
                                                                          return parser.Transform(markDown);
                                                                      });
