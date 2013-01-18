@@ -5,8 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4E489348-2467-4E50-AD57-B56BF20BF647}</ProjectGuid>
-    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{864AF449-0902-44FC-BEEE-06BA9A6F4A8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Nancy.Markdown</RootNamespace>
     <AssemblyName>Nancy.Markdown</AssemblyName>
@@ -15,7 +14,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,42 +23,26 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.15.3\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet">
-      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.15.3\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\..\..\Downloads\markdownsharp-20100703-v113\MarkdownSharp\bin\Debug\MarkdownSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
-        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="MarkDownEngine.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

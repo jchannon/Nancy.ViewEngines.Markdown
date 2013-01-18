@@ -2,11 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Nancy.Markdown/MarkDownEngine.cs">
     <Files>
-      <File FileName="Nancy.Markdown/MarkDownEngine.cs" Line="24" Column="13" />
+      <File FileName="Nancy.Markdown/MarkDownEngine.cs" Line="22" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/jonathanchannon/Projects/Nancy.Markdown/Nancy.Markdown/MarkDownEngine.cs" line="20" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

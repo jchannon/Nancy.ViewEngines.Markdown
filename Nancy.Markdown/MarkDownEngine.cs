@@ -8,8 +8,6 @@ namespace Nancy.Markdown
 {
 	public class MarkDownEngine : IViewEngine
 	{
-
-
 		public void Initialize (ViewEngineStartupContext viewEngineStartupContext)
 		{
 
