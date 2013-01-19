@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Nancy.ViewEngines.Markdown</RootNamespace>
     <AssemblyName>Nancy.Markdown</AssemblyName>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -44,7 +44,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <ItemGroup>
     <ProjectReference Include="..\MarkdownSharp\MarkdownSharp.csproj">
       <Project>{37619116-CCE8-465A-8B1F-081CA53364BB}</Project>
