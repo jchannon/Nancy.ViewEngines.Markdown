@@ -51,8 +51,8 @@ namespace Nancy.ViewEngines.Markdown
             
             */
 
-            var rgx = new Regex("<p>(@[^<]*)</p>");
-            var serverHtml = rgx.Replace(html, "$1");
+            var regex = new Regex("<p>(@[^<]*)</p>");
+            var serverHtml = regex.Replace(html, "$1");
 
             var renderHtml = this.ssveWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
 
