@@ -10,7 +10,7 @@ namespace Nancy.ViewEngines.Markdown
     public class MarkdownViewEngineHost : IViewEngineHost
     {
         private readonly IViewEngineHost viewEngineHost;
-        private IRenderContext renderContext;
+        private readonly IRenderContext renderContext;
 
         public MarkdownViewEngineHost(IViewEngineHost viewEngineHost, IRenderContext renderContext)
         {
@@ -70,10 +70,8 @@ namespace Nancy.ViewEngines.Markdown
 
                 return html;
             }
-            else
-            {
-                return masterpartialContent;
-            }
+            
+            return masterpartialContent;
         }
 
         public string GetUriString(string name, params string[] parameters)
@@ -84,7 +82,6 @@ namespace Nancy.ViewEngines.Markdown
         public string ExpandPath(string path)
         {
             return this.viewEngineHost.ExpandPath(path);
-
         }
 
         public string AntiForgeryToken()
