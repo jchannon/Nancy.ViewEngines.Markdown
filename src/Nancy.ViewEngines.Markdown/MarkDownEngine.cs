@@ -36,7 +36,10 @@ namespace Nancy.ViewEngines.Markdown
             var html = renderContext.ViewCache.GetOrAdd(viewLocationResult, result =>
                                                                      {
                                                                          string markDown = File.ReadAllText(rootPathProvider.GetRootPath() + viewLocationResult.Location + Path.DirectorySeparatorChar + viewLocationResult.Name + ".md");
-                                                                         var parser = new Markdown();
+                                                                        
+                                                                         MarkdownOptions options = new MarkdownOptions();
+                                                                         options.AutoNewLines = false;
+                                                                         var parser = new Markdown(options);
                                                                          return parser.Transform(markDown);
                                                                      });
 
@@ -54,7 +57,7 @@ namespace Nancy.ViewEngines.Markdown
             var regex = new Regex("<p>(@[^<]*)</p>");
             var serverHtml = regex.Replace(html, "$1");
 
-            var renderHtml = this.engineWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
+            var renderHtml = this.engineWrapper.Render(serverHtml, model, new MarkdownViewEngineHost(new NancyViewEngineHost(renderContext), renderContext));
 
             response.Contents = stream =>
             {

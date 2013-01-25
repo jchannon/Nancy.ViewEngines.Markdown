@@ -25,4 +25,17 @@ dog's back.
 
 My name is @Model.Name
 
+
+@Partial['partial'];
+
+
+
 @EndSection
+
+
+@Section['OtherSection']
+
+@Partial['MySection'];
+
+@EndSection
+

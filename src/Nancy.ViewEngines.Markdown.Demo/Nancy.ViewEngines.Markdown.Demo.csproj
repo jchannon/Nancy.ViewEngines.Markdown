@@ -52,9 +52,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Nancy">
-      <HintPath>..\..\packages\Nancy.0.15.3\lib\net40\Nancy.dll</HintPath>
-    </Reference>
     <Reference Include="Nancy.Hosting.Aspnet">
       <HintPath>..\..\packages\Nancy.Hosting.Aspnet.0.15.3\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
@@ -91,13 +88,18 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Nancy\src\Nancy\Nancy.csproj">
+      <Project>{34576216-0dca-4b0f-a0dc-9075e75a676f}</Project>
+      <Name>Nancy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nancy.ViewEngines.Markdown\Nancy.ViewEngines.Markdown.csproj">
       <Project>{864AF449-0902-44FC-BEEE-06BA9A6F4A8F}</Project>
       <Name>Nancy.ViewEngines.Markdown</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\master.html" />
+    <Content Include="Content\main.css" />
+    <None Include="Views\Home\master.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\HomeModule.cs" />
@@ -108,6 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\home.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\partial.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\MySection.md" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
