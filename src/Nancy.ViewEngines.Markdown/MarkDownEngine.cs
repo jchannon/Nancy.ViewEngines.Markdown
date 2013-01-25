@@ -37,29 +37,29 @@ namespace Nancy.ViewEngines.Markdown
                                                                      {
                                                                          string markDown = File.ReadAllText(rootPathProvider.GetRootPath() + viewLocationResult.Location + Path.DirectorySeparatorChar + viewLocationResult.Name + ".md");
                                                                          var parser = new Markdown();
-                                                                         var convertedHtml = parser.Transform(markDown);
-
-                                                                         /*
-            
-                                                                           <p>		- matches the literal string "<p>"
-                                                                           (		- creates a capture group, so that we can get the text back by backreferencing in our replacement string
-                                                                           @		- matches the literal string "@"
-                                                                           [^<]*	- matches any character other than the "<" character and does this any amount of times
-                                                                           )		- ends the capture group
-                                                                           </p>	- matches the literal string "</p>"
-            
-                                                                         */
-
-                                                                         var rgx = new Regex("<p>(@[^<]*)</p>");
-                                                                         var serverHtml = rgx.Replace(convertedHtml, "$1");
-
-                                                                         return this.ssveWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
+                                                                         return parser.Transform(markDown);
                                                                      });
+
+            /*
+            
+            <p>		- matches the literal string "<p>"
+            (		- creates a capture group, so that we can get the text back by backreferencing in our replacement string
+            @		- matches the literal string "@"
+            [^<]*	- matches any character other than the "<" character and does this any amount of times
+            )		- ends the capture group
+            </p>	- matches the literal string "</p>"
+            
+            */
+
+            var rgx = new Regex("<p>(@[^<]*)</p>");
+            var serverHtml = rgx.Replace(html, "$1");
+
+            var renderHtml = this.ssveWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
 
             response.Contents = stream =>
             {
                 var writer = new StreamWriter(stream);
-                writer.Write(html);
+                writer.Write(renderHtml);
                 writer.Flush();
             };
 
