@@ -2,10 +2,10 @@
 
 @Section['Content']
 
-A First Level Header
+A First Level Header in Page
 ====================
 
-A Second Level Header
+A Second Level Header in Page
 ---------------------
 
 Now is the time for all good men to come to
@@ -23,12 +23,11 @@ dog's back.
 >
 > ## This is an H2 in a blockquote
 
-My name is @Model.Name
-
+My name is @Model.Name and I come from the model
 
 @Partial['partial'];
 
-
+@Partial['user', Model.Users];
 
 @EndSection
 

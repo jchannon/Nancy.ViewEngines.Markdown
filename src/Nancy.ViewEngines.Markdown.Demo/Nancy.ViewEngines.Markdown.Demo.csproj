@@ -100,8 +100,10 @@
   <ItemGroup>
     <Content Include="Content\main.css" />
     <None Include="Views\Home\master.md" />
+    <Content Include="Views\Home\user.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainModel.cs" />
     <Compile Include="Modules\HomeModule.cs" />
   </ItemGroup>
   <ItemGroup>

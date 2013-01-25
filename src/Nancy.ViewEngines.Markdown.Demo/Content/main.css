@@ -1,6 +1,10 @@
-﻿body {
+﻿
+p { color:#dc322f; }
 
+h1{color:#d33682;}
+h2{color:#268bd2;}
+h3{color: #2aa198}
+h4{color:#859900;}
 
-}
-h1 { color: magenta;}
-p { color: darkseagreen;}
+body{ background-color: #073642; }
+
