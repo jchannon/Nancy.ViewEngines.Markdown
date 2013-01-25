@@ -12,17 +12,17 @@ namespace Nancy.ViewEngines.Markdown
     public class MarkDownEngine : IViewEngine
     {
         private readonly IRootPathProvider rootPathProvider;
-        private readonly SSVEWrapper ssveWrapper;
+        private readonly SuperSimpleViewEngine engineWrapper;
 
         public IEnumerable<string> Extensions
         {
             get { return new[] { "md" }; }
         }
 
-        public MarkDownEngine(IRootPathProvider rootPathProvider, SSVEWrapper ssveWrapper)
+        public MarkDownEngine(IRootPathProvider rootPathProvider, SuperSimpleViewEngine engineWrapper)
         {
             this.rootPathProvider = rootPathProvider;
-            this.ssveWrapper = ssveWrapper;
+            this.engineWrapper = engineWrapper;
         }
 
         public void Initialize(ViewEngineStartupContext viewEngineStartupContext)
@@ -54,7 +54,7 @@ namespace Nancy.ViewEngines.Markdown
             var regex = new Regex("<p>(@[^<]*)</p>");
             var serverHtml = regex.Replace(html, "$1");
 
-            var renderHtml = this.ssveWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
+            var renderHtml = this.engineWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
 
             response.Contents = stream =>
             {
