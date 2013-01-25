@@ -1,24 +1,28 @@
 namespace Nancy.ViewEngines.Markdown
 {
-	using System;
-	using Nancy.ViewEngines;
-	using System.Collections.Generic;
-	using Nancy.Responses;
-	using System.IO;
-	using MarkdownSharp;
+    using Nancy.ViewEngines;
+    using System.Collections.Generic;
+    using Nancy.Responses;
+    using System.IO;
+    using MarkdownSharp;
+    using Nancy.ViewEngines.SuperSimpleViewEngine;
+    using System;
+    using System.Text.RegularExpressions;
 
     public class MarkDownEngine : IViewEngine
     {
         private readonly IRootPathProvider rootPathProvider;
+        private readonly SSVEWrapper ssveWrapper;
 
         public IEnumerable<string> Extensions
         {
             get { return new[] { "md" }; }
         }
 
-        public MarkDownEngine(IRootPathProvider rootPathProvider)
+        public MarkDownEngine(IRootPathProvider rootPathProvider, SSVEWrapper ssveWrapper)
         {
             this.rootPathProvider = rootPathProvider;
+            this.ssveWrapper = ssveWrapper;
         }
 
         public void Initialize(ViewEngineStartupContext viewEngineStartupContext)
@@ -29,16 +33,33 @@ namespace Nancy.ViewEngines.Markdown
         {
             var response = new HtmlResponse();
 
-            string HTML = renderContext.ViewCache.GetOrAdd(viewLocationResult, result =>
+            var html = renderContext.ViewCache.GetOrAdd(viewLocationResult, result =>
                                                                      {
                                                                          string markDown = File.ReadAllText(rootPathProvider.GetRootPath() + viewLocationResult.Location + Path.DirectorySeparatorChar + viewLocationResult.Name + ".md");
-                                                                         var parser = new MarkdownSharp.Markdown();
-                                                                         return parser.Transform(markDown);
+                                                                         var parser = new Markdown();
+                                                                         var convertedHtml = parser.Transform(markDown);
+
+                                                                         /*
+            
+                                                                           <p>		- matches the literal string "<p>"
+                                                                           (		- creates a capture group, so that we can get the text back by backreferencing in our replacement string
+                                                                           @		- matches the literal string "@"
+                                                                           [^<]*	- matches any character other than the "<" character and does this any amount of times
+                                                                           )		- ends the capture group
+                                                                           </p>	- matches the literal string "</p>"
+            
+                                                                         */
+
+                                                                         var rgx = new Regex("<p>(@[^<]*)</p>");
+                                                                         var serverHtml = rgx.Replace(convertedHtml, "$1");
+
+                                                                         return this.ssveWrapper.Render(serverHtml, model, new NancyViewEngineHost(renderContext));
                                                                      });
+
             response.Contents = stream =>
             {
                 var writer = new StreamWriter(stream);
-                writer.Write(HTML);
+                writer.Write(html);
                 writer.Flush();
             };
 

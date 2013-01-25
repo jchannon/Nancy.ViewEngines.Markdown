@@ -96,7 +96,9 @@
       <Name>Nancy.ViewEngines.Markdown</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Home\master.html" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\HomeModule.cs" />
   </ItemGroup>

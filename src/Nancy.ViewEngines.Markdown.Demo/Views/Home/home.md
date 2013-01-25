@@ -1,3 +1,7 @@
+@Master['master']
+
+@Section['Content']
+
 A First Level Header
 ====================
 
@@ -18,3 +22,7 @@ dog's back.
 > This is the second paragraph in the blockquote.
 >
 > ## This is an H2 in a blockquote
+
+My name is @Model.Name
+
+@EndSection
