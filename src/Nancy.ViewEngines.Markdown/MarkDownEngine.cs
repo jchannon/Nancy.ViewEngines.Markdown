@@ -13,6 +13,7 @@ namespace Nancy.ViewEngines.Markdown
     {
         private readonly IRootPathProvider rootPathProvider;
         private readonly SuperSimpleViewEngine engineWrapper;
+        private static readonly Regex ParagraphSubstitution = new Regex("<p>(@[^<]*)</p>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public IEnumerable<string> Extensions
         {
@@ -37,16 +38,13 @@ namespace Nancy.ViewEngines.Markdown
                                                                                 {
                                                                                     string markDown =
                                                                                         File.ReadAllText(
-                                                                                            rootPathProvider.GetRootPath
-                                                                                                () +
+                                                                                            rootPathProvider.GetRootPath() +
                                                                                             viewLocationResult.Location +
                                                                                             Path.DirectorySeparatorChar +
                                                                                             viewLocationResult.Name +
                                                                                             ".md");
                                                                         
-                                                                         MarkdownOptions options = new MarkdownOptions();
-                                                                         options.AutoNewLines = false;
-                                                                         var parser = new Markdown(options);
+                                                                         var parser = new Markdown();
                                                                          return parser.Transform(markDown);
                                                                      });
 
@@ -61,8 +59,7 @@ namespace Nancy.ViewEngines.Markdown
             
             */
 
-            var regex = new Regex("<p>(@[^<]*)</p>");
-            var serverHtml = regex.Replace(html, "$1");
+            var serverHtml = ParagraphSubstitution.Replace(html, "$1");
 
             var renderHtml = this.engineWrapper.Render(serverHtml, model, new MarkdownViewEngineHost(new NancyViewEngineHost(renderContext), renderContext));
 
