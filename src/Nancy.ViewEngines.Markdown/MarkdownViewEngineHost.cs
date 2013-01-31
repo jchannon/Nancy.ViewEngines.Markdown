@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-
-namespace Nancy.ViewEngines.Markdown
+﻿namespace Nancy.ViewEngines.Markdown
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using Nancy.ViewEngines.SuperSimpleViewEngine;
+    using System;
+    using System.Linq;
 
     public class MarkdownViewEngineHost : IViewEngineHost
     {
