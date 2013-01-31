@@ -34,8 +34,15 @@ namespace Nancy.ViewEngines.Markdown
             var response = new HtmlResponse();
 
             var html = renderContext.ViewCache.GetOrAdd(viewLocationResult, result =>
-                                                                     {
-                                                                         string markDown = File.ReadAllText(rootPathProvider.GetRootPath() + viewLocationResult.Location + Path.DirectorySeparatorChar + viewLocationResult.Name + ".md");
+                                                                                {
+                                                                                    string markDown =
+                                                                                        File.ReadAllText(
+                                                                                            rootPathProvider.GetRootPath
+                                                                                                () +
+                                                                                            viewLocationResult.Location +
+                                                                                            Path.DirectorySeparatorChar +
+                                                                                            viewLocationResult.Name +
+                                                                                            ".md");
                                                                         
                                                                          MarkdownOptions options = new MarkdownOptions();
                                                                          options.AutoNewLines = false;
