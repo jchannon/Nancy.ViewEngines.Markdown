@@ -42,22 +42,25 @@ namespace Nancy.ViewEngines.Markdown
 
             var masterpartialContent = viewLocationResult.Contents.Invoke().ReadToEnd();
 
-            if (validExtensions.Contains(viewLocationResult.Extension, StringComparison.OrdinalIgnoreCase))
+            if (!ValidExtensions.Any(x => x.Equals(viewLocationResult.Extension, StringComparison.OrdinalIgnoreCase)))
             {
-                string html = string.Empty;
+                return masterpartialContent;
+            }
 
-                if (viewLocationResult.Name == "master")
-                {
-                    string header = masterpartialContent.Substring(masterpartialContent.IndexOf("<!DOCTYPE html>", System.StringComparison.Ordinal),
-                                                                   masterpartialContent.IndexOf("<body>", System.StringComparison.Ordinal) + 6);
+            string html;
 
-                    string toConvert =
-                        masterpartialContent.Substring(
-                            masterpartialContent.IndexOf("<body>", System.StringComparison.Ordinal) + 6,
-                            (masterpartialContent.IndexOf("</body>", System.StringComparison.Ordinal) - 7) -
-                            (masterpartialContent.IndexOf("<body>", System.StringComparison.Ordinal)));
+            if (viewLocationResult.Name == "master")
+            {
+                string header = masterpartialContent.Substring(masterpartialContent.IndexOf("<!DOCTYPE html>", StringComparison.Ordinal),
+                                                                masterpartialContent.IndexOf("<body>", StringComparison.Ordinal) + 6);
 
-                    string footer = masterpartialContent.Substring(masterpartialContent.IndexOf("</body>", System.StringComparison.Ordinal));
+                string toConvert =
+                    masterpartialContent.Substring(
+                        masterpartialContent.IndexOf("<body>", StringComparison.Ordinal) + 6,
+                        (masterpartialContent.IndexOf("</body>", StringComparison.Ordinal) - 7) -
+                        (masterpartialContent.IndexOf("<body>", StringComparison.Ordinal)));
+
+                string footer = masterpartialContent.Substring(masterpartialContent.IndexOf("</body>", StringComparison.Ordinal));
 
                     html = parser.Transform(toConvert);
 
@@ -73,7 +76,7 @@ namespace Nancy.ViewEngines.Markdown
 
                 return html;
             }
-
+            
             return masterpartialContent;
         }
 
