@@ -1,10 +1,11 @@
 ﻿namespace Nancy.ViewEngines.Markdown
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using Nancy.ViewEngines.SuperSimpleViewEngine;
     using System;
-    using System.Linq;
+    
 
     public class MarkdownViewEngineHost : IViewEngineHost
     {
@@ -65,12 +66,8 @@
 
                 return string.Concat(header, serverHtml, footer);
             }
-            else
-            {
-                var parser = new MarkdownSharp.Markdown();
-                return  parser.Transform(masterpartialContent);
-            }
-
+            
+            return  parser.Transform(masterpartialContent);
         }
 
 
