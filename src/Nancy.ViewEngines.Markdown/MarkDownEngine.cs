@@ -11,18 +11,27 @@ namespace Nancy.ViewEngines.Markdown
 
     public class MarkDownEngine : IViewEngine
     {
-        private readonly IRootPathProvider rootPathProvider;
         private readonly SuperSimpleViewEngine engineWrapper;
         private static readonly Regex ParagraphSubstitution = new Regex("<p>(@[^<]*)</p>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        /*
+            
+            <p>		- matches the literal string "<p>"
+            (		- creates a capture group, so that we can get the text back by backreferencing in our replacement string
+            @		- matches the literal string "@"
+            [^<]*	- matches any character other than the "<" character and does this any amount of times
+            )		- ends the capture group
+            </p>	- matches the literal string "</p>"
+            
+            */
 
         public IEnumerable<string> Extensions
         {
             get { return new[] { "md" }; }
         }
 
-        public MarkDownEngine(IRootPathProvider rootPathProvider, SuperSimpleViewEngine engineWrapper)
+        public MarkDownEngine(SuperSimpleViewEngine engineWrapper)
         {
-            this.rootPathProvider = rootPathProvider;
             this.engineWrapper = engineWrapper;
         }
 
@@ -37,27 +46,14 @@ namespace Nancy.ViewEngines.Markdown
             var html = renderContext.ViewCache.GetOrAdd(viewLocationResult, result =>
                                                                                 {
                                                                                     string markDown =
-                                                                                        File.ReadAllText(
-                                                                                            rootPathProvider.GetRootPath() +
-                                                                                            viewLocationResult.Location +
-                                                                                            Path.DirectorySeparatorChar +
-                                                                                            viewLocationResult.Name +
-                                                                                            ".md");
-                                                                        
-                                                                         var parser = new Markdown();
-                                                                         return parser.Transform(markDown);
-                                                                     });
+                                                                                        viewLocationResult.Contents()
+                                                                                                          .ReadToEnd();
 
-            /*
-            
-            <p>		- matches the literal string "<p>"
-            (		- creates a capture group, so that we can get the text back by backreferencing in our replacement string
-            @		- matches the literal string "@"
-            [^<]*	- matches any character other than the "<" character and does this any amount of times
-            )		- ends the capture group
-            </p>	- matches the literal string "</p>"
-            
-            */
+
+                                                                                    var parser = new Markdown();
+                                                                                    return parser.Transform(markDown);
+                                                                                });
+
 
             var serverHtml = ParagraphSubstitution.Replace(html, "$1");
 
